@@ -10,107 +10,112 @@ using Democracy.Models;
 
 namespace Democracy.Controllers
 {
-    public class StatesController : Controller
+    public class VotingsController : Controller
     {
         private DemocracyContext db = new DemocracyContext();
 
-        // GET: States
+        // GET: Votings
         public ActionResult Index()
         {
-            return View(db.State.ToList());
+            var votings = db.Votings.Include(v => v.State);
+            return View(votings.ToList());
         }
 
-        // GET: States/Details/5
+        // GET: Votings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            State state = db.State.Find(id);
-            if (state == null)
+            Voting voting = db.Votings.Find(id);
+            if (voting == null)
             {
                 return HttpNotFound();
             }
-            return View(state);
+            return View(voting);
         }
 
-        // GET: States/Create
+        // GET: Votings/Create
         public ActionResult Create()
         {
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description");
             return View();
         }
 
-        // POST: States/Create
+        // POST: Votings/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StateId,Description")] State state)
+        public ActionResult Create([Bind(Include = "VotingId,Description,StateId,Remarks,DateTimeStart,DateTimeEnd,IsForAllUsers,IsEnabledBlankVote,QuantityVotes,QuantityBlankVotes,CandidateWinID")] Voting voting)
         {
             if (ModelState.IsValid)
             {
-                db.State.Add(state);
+                db.Votings.Add(voting);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(state);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description", voting.StateId);
+            return View(voting);
         }
 
-        // GET: States/Edit/5
+        // GET: Votings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            State state = db.State.Find(id);
-            if (state == null)
+            Voting voting = db.Votings.Find(id);
+            if (voting == null)
             {
                 return HttpNotFound();
             }
-            return View(state);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description", voting.StateId);
+            return View(voting);
         }
 
-        // POST: States/Edit/5
+        // POST: Votings/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StateId,Description")] State state)
+        public ActionResult Edit([Bind(Include = "VotingId,Description,StateId,Remarks,DateTimeStart,DateTimeEnd,IsForAllUsers,IsEnabledBlankVote,QuantityVotes,QuantityBlankVotes,CandidateWinID")] Voting voting)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(state).State = EntityState.Modified;
+                db.Entry(voting).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(state);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description", voting.StateId);
+            return View(voting);
         }
 
-        // GET: States/Delete/5
+        // GET: Votings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            State state = db.State.Find(id);
-            if (state == null)
+            Voting voting = db.Votings.Find(id);
+            if (voting == null)
             {
                 return HttpNotFound();
             }
-            return View(state);
+            return View(voting);
         }
 
-        // POST: States/Delete/5
+        // POST: Votings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            State state = db.State.Find(id);
-            db.State.Remove(state);
+            Voting voting = db.Votings.Find(id);
+            db.Votings.Remove(voting);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

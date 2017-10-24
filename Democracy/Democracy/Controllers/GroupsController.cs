@@ -46,7 +46,7 @@ namespace Democracy.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupI,Description")] Group group)
+        public ActionResult Create([Bind(Include = "GroupId,Description")] Group group)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Democracy.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupI,Description")] Group group)
+        public ActionResult Edit([Bind(Include = "GroupId,Description")] Group group)
         {
             if (ModelState.IsValid)
             {

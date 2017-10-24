@@ -204,18 +204,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
+    <Compile Include="Controllers\VotingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710200305277_InitialCreate.cs" />
-    <Compile Include="Migrations\201710200305277_InitialCreate.Designer.cs">
-      <DependentUpon>201710200305277_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710200349450_20171019.cs" />
-    <Compile Include="Migrations\201710200349450_20171019.Designer.cs">
-      <DependentUpon>201710200349450_20171019.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DemocracyContext.cs" />
     <Compile Include="Models\Group.cs" />
@@ -283,16 +275,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\States\Create.cshtml" />
-    <Content Include="Views\States\Delete.cshtml" />
-    <Content Include="Views\States\Details.cshtml" />
-    <Content Include="Views\States\Edit.cshtml" />
-    <Content Include="Views\States\Index.cshtml" />
     <Content Include="Views\Groups\Create.cshtml" />
     <Content Include="Views\Groups\Delete.cshtml" />
     <Content Include="Views\Groups\Details.cshtml" />
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\States\Create.cshtml" />
+    <Content Include="Views\States\Delete.cshtml" />
+    <Content Include="Views\States\Details.cshtml" />
+    <Content Include="Views\States\Edit.cshtml" />
+    <Content Include="Views\States\Index.cshtml" />
+    <Content Include="Views\Votings\Create.cshtml" />
+    <Content Include="Views\Votings\Delete.cshtml" />
+    <Content Include="Views\Votings\Details.cshtml" />
+    <Content Include="Views\Votings\Edit.cshtml" />
+    <Content Include="Views\Votings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,14 +306,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710200305277_InitialCreate.resx">
-      <DependentUpon>201710200305277_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710200349450_20171019.resx">
-      <DependentUpon>201710200349450_20171019.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

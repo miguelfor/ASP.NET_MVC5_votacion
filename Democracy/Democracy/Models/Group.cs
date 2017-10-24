@@ -12,7 +12,7 @@ namespace Democracy.Models
         /// Gets or sets the grpup id
         /// </summary>
         [Key]
-        public int GroupI { get; set; }
+        public int GroupId { get; set; }
         /// <summary>
         /// Gets or sets the group description
         /// </summary>

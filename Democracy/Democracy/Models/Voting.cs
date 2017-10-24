@@ -49,5 +49,8 @@ namespace Democracy.Models
 
         [Display(Name = "Winner")]
         public int CandidateWinID { get; set; }
+
+         public virtual State State { get; set; }
+
     }
 }

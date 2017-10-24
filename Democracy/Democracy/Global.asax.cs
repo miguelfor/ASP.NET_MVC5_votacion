@@ -1,4 +1,4 @@
-﻿using Democracy.Migrations;
+﻿//using Democracy.Migrations;
 using Democracy.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Democracy
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DemocracyContext, Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<DemocracyContext, Configuration>());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
