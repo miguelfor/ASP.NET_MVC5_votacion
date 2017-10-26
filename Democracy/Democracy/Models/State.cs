@@ -15,6 +15,7 @@ namespace Democracy.Models
         [StringLength(50, ErrorMessage =
                     "The field {0} can contain maximum {1} and minimum {2} character",
                     MinimumLength = 3)]
+        [Display(Name = "State description")]
         public string Description { get; set; }
 
         public virtual ICollection<Voting> Votings { get; set; }

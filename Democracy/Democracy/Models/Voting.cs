@@ -15,6 +15,7 @@ namespace Democracy.Models
         [StringLength(50, ErrorMessage =
                     "The field {0} can contain maximum {1} and minimum {2} character",
                     MinimumLength = 3)]
+        [Display(Name = "Voting description")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
@@ -27,12 +28,12 @@ namespace Democracy.Models
         [Required(ErrorMessage = "The field {0} is required")]
         [Display(Name = "Date Time Start")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateTimeStart { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateTimeEnd { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
