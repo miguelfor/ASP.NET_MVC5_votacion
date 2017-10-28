@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,12 @@ namespace Democracy.Models
         {
         }
 
+        //desabilita borrrado en cascada
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
+
         public DbSet<State> State { get; set; }
 
         public System.Data.Entity.DbSet<Democracy.Models.Group> Groups { get; set; }
@@ -20,5 +27,6 @@ namespace Democracy.Models
         public System.Data.Entity.DbSet<Democracy.Models.Voting> Votings { get; set; }
 
         public System.Data.Entity.DbSet<Democracy.Models.User> Users { get; set; }
+        public System.Data.Entity.DbSet<Democracy.Models.GroupMember> GroupMembers { get; set; }
     }
 }

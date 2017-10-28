@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Democracy.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Democracy.Controllers
 {
@@ -92,6 +94,7 @@ namespace Democracy.Controllers
             try
             {
                 db.SaveChanges();
+                this.CreateASPUser(userView);
             }
             catch (Exception ex)
             {
@@ -111,6 +114,42 @@ namespace Democracy.Controllers
             return RedirectToAction("Index");
 
         }
+
+        private void CreateASPUser(UserView userView)
+        {
+            var userContext = new ApplicationDbContext();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(userContext));
+
+            string roleName = "User";
+
+            if (!roleManager.RoleExists(roleName))
+            {
+                roleManager.Create(new IdentityRole(roleName));
+            }
+
+            var userAsp = new ApplicationUser
+            {
+                UserName = userView.UserName,
+                Email = userView.UserName,
+                PhoneNumber = userView.Phone,
+
+            };
+
+            userManager.Create(userAsp, userAsp.UserName);
+
+            // add user role
+            userAsp = userManager.FindByName(userView.UserName);
+            userManager.AddToRole(userAsp.Id, "User");
+
+
+
+
+
+           // throw new NotImplementedException();
+        }
+
+
 
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
